@@ -1,21 +1,36 @@
 s.boot
 (
 //Global Vars
-~numOfSynths = 5;
-~numOfPartials = 12;
+//~numOfSynths = 5;
+//numOfPartials = 12;
 // ~arrayFreqs = List.new;
 // ~arrayAmps = List.new;
 // ~arrayOfSynths = List.new;
 
 // Synth
+
 SynthDef.new(\sine, {
-	arg freq=440, amp = 0.5, gate = 0;
-	var sig, env;
+	arg freq=440, amp = 1, gate = 0, pan = 0;
+	var sig, env, vib, noise;
 	env = EnvGen.kr(Env.adsr, gate);
-	sig = SinOsc.ar(freq);
+	vib = LFNoise2.kr(5)*3;
+	sig = SinOsc.ar(freq+vib,amp);
 	sig = sig*amp*env;
-	Out.ar(0, sig!2);
+	sig = Pan2.ar(sig, pan);
+//	sig = FreeVerb.ar(sig, 0.8, amp, amp);
+	Out.ar(0, sig);
 }).add;
+
+
+// SynthDef.new(\sineOld, {
+// 	arg freq=440, amp = 1, gate = 0, pan = 0;
+// 	var sig, env;
+// 	env = EnvGen.kr(Env.adsr, gate);
+// 	sig = SinOsc.ar(freq);
+// 	sig = sig*amp*env;
+// 	sig = Pan2.ar(sig, pan);
+// 	Out.ar(0, sig);
+// }).add;
 
 // recebe ofOsc /of/setup/numOfBalls, numOfPartials
 // cria List para Frequencias, Amplitudes e para Synths
@@ -81,6 +96,26 @@ OSCdef.new(\updateAmps, {
 		~arrayOfSynths[id][i].set(\amp, amp);
 	})
 },'/of/updateAmps');
+
+
+//recebe ofOsc /of/updatePan/id, pan
+//atualiza os synths
+OSCdef.new(\updatePan, {
+	arg msg;
+
+	var id = msg[1].asInt;
+	var pan = msg[2].asFloat;
+	msg.postln;
+	~numOfPartials.do({
+			arg i;
+		~arrayOfSynths[id][i].set(\pan, pan);
+	})
+},'/of/updatePan');
+
+
+OSCdef.new(\closeOsc, {
+	s.freeAll;
+},'/of/closeOsc');
 
 
 )
