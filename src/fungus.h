@@ -87,8 +87,8 @@ namespace Fungus{
     //eh sempre em torno de uns 30 FPS...).
     //  O certo eh deixar carregado. Na hora de desenhar, simplemente chamar m_texture.draw. Eh exatamente o
     //que vamos fazer agora, ja que m_images agora ja sao as imagens carregadas.
-    //  Assim, descomentamos essa linha loadData:
-    m_texture.loadData(m_images[imageIndex]);
+    //  Assim, comentamos essa linha loadData:
+    //m_texture.loadData(m_images[imageIndex]);
     m_texture.draw(xPosition - radius, yPosition - radius, radius * factor, radius * factor);
   }
 
