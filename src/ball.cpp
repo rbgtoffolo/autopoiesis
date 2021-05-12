@@ -3,6 +3,7 @@
 #include <numeric>
 #include "constants.h"
 #include <string>
+#include "fungus.h"
 
 Ball::Ball()
 {
@@ -34,7 +35,7 @@ Ball::Ball(int id, int radius, int numPartials, int root, float minRoot, float m
   m_acceleration.set(0,2);
 
   // call log function to show all parameters
-  log("constructor");
+  //log("constructor");
 }
 
 // calculate Mass based on Radius
@@ -56,15 +57,12 @@ void Ball::update(){
 
 }
 
-void Ball::draw(vector<ofTexture> &texture){
+void Ball::draw(){
   ofSetColor(m_color);
-  int imageIndex = std::ceil(ofMap(m_radius, MINRADIUS, MAXRADIUS, 0, 10));
-  float size = m_radius * (MAXRADIUS / 2.5);
-  //texture[imageIndex].draw(m_position.x - m_radius, m_position - m_radius, size, size);
   //ofFill();
   // myFont.drawString(myString, position.x, position.y - radius - 2);
   //ofDrawCircle(m_position.x, m_position.y, m_radius);
-  texture[imageIndex].draw(m_position.x - m_radius, m_position.y - m_radius, size, size);
+  Fungus::draw(m_position.x, m_position.y, m_radius, MINRADIUS, MAXRADIUS);
 }
 
 float Ball::sumAmps(){
@@ -104,7 +102,7 @@ void Ball::decreaseRadius(int factor){
   if (m_radius < MINRADIUS) m_radius = MINRADIUS;
   scaleByRadius(oldRadius, m_radius);
   calculateMass();
-  log("decrease r");
+  //log("decrease r");
 }
 
 void Ball::increaseRadius(int factor){
@@ -113,18 +111,11 @@ void Ball::increaseRadius(int factor){
   if (m_radius > MAXRADIUS) m_radius = MAXRADIUS;
   scaleByRadius(oldRadius, m_radius);
   calculateMass();
-  log ("increase r");
+  //log ("increase r");
 }
 
 
 void Ball::scaleByRadius(int oldRadius, int newRadius){
-//  float finalFactor = ofMap(m_radius, MINRADIUS, MAXRADIUS, 0.01f, 1.0f);
-//  float inicialFactor = m_amps[0];
-//  float scale = finalFactor/inicialFactor;
-//  for (int i = 0; i < m_numPartials; i++){
-//      m_amps[i] *= scale;
-////      if (m_amps[i] == 0) m_amps[i] = 0.00001;
-//    }
   for (int i = 0; i < m_numPartials; i++){
       m_amps[i] = (m_amps[i]*newRadius)/oldRadius;
     }

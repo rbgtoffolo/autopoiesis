@@ -20,7 +20,6 @@ private:
 
   int m_numBalls;
   int m_numPartials;
-  vector<ofTexture> m_textures;
 
   vector<Ball> m_balls;
   void checkCollision();

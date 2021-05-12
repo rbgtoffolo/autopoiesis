@@ -1,6 +1,7 @@
 #include "world.h"
 #include "constants.h"
 #include <cmath>
+#include "fungus.h"
 
 World::World(){}
 
@@ -8,7 +9,7 @@ World::World(int numBalls, int numPartials)
   : m_numBalls(numBalls),
     m_numPartials(numPartials)
 {
-  initTextures();
+  Fungus::initImages();
   for (int i = 0; i< m_numBalls; i++){
       Ball tempBall;
       tempBall = Ball(i,
@@ -37,52 +38,6 @@ World::World(int numBalls, int numPartials)
   initAllSynths(); // start all synths with freqs and amps in SC
 }
 
-void World::initTextures(){
-  m_textures[0].allocate(250,250,GL_RGBA);
-  m_textures[0].clear();
-  ofLoadImage(m_textures[0], "t00.png");
-
-  m_textures[1].allocate(250,250,GL_RGBA);
-  m_textures[1].clear();
-  ofLoadImage(m_textures[1], "t01.png");
-
-  m_textures[2].allocate(250,250,GL_RGBA);
-  m_textures[2].clear();
-  ofLoadImage(m_textures[2], "t02.png");
-
-  m_textures[3].allocate(250,250,GL_RGBA);
-  m_textures[3].clear();
-  ofLoadImage(m_textures[3], "t03.png");
-
-  m_textures[4].allocate(250,250,GL_RGBA);
-  m_textures[4].clear();
-  ofLoadImage(m_textures[4], "t04.png");
-
-  m_textures[5].allocate(250,250,GL_RGBA);
-  m_textures[5].clear();
-  ofLoadImage(m_textures[5], "t05.png");
-
-  m_textures[6].allocate(250,250,GL_RGBA);
-  m_textures[6].clear();
-  ofLoadImage(m_textures[6], "t06.png");
-
-  m_textures[7].allocate(250,250,GL_RGBA);
-  m_textures[7].clear();
-  ofLoadImage(m_textures[7], "t07.png");
-
-  m_textures[8].allocate(250,250,GL_RGBA);
-  m_textures[8].clear();
-  ofLoadImage(m_textures[8], "t08.png");
-
-  m_textures[9].allocate(250,250,GL_RGBA);
-  m_textures[9].clear();
-  ofLoadImage(m_textures[9], "t09.png");
-
-  m_textures[10].allocate(250,250,GL_RGBA);
-  m_textures[10].clear();
-  ofLoadImage(m_textures[10], "t010.png");
-
-}
 
 void World::update(){
 
@@ -95,7 +50,7 @@ void World::update(){
 void World::draw(){
 
   for (auto &ball : m_balls){
-      ball.draw(m_textures);
+      ball.draw();
       updatePan(ball);
     }
 }

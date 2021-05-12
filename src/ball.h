@@ -27,7 +27,7 @@ public:
   ofVec2f velocity() const {return m_velocity;};
   float mass() const {return m_mass;};
   void setColor();
-  void draw(vector<ofTexture> &texture);
+  void draw();
   int freq(int index) const {return m_freqs[index];};
   void decreaseRadius(int factor);
   void increaseRadius(int factor);
