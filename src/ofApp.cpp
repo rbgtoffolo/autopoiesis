@@ -4,10 +4,11 @@
 
 //--------------------------------------------------------------
 void ofApp::setup(){
-  ofSetBackgroundColor(144);
+
+  ofSetBackgroundColor(70);
   ofSetCircleResolution(128);
   myTextures = Textures();
-  myWorld = World(10, 15, myTextures.m_images, &myTextures.m_texture);
+  myWorld = World(70, 6, myTextures.m_images, &myTextures.m_texture);
 
 
 }

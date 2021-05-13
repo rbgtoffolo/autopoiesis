@@ -156,7 +156,7 @@ void World::scaleAllAmps(){
       for (int j = 0; j < m_numPartials; j++){
           m_balls[i].setAmplitude(j, m_balls[i].amp(j)/m_numBalls);
         }
-      m_balls[i].log("scaleAllAmps");
+      //m_balls[i].log("scaleAllAmps");
     }
 }
 

@@ -13,7 +13,7 @@ SynthDef.new(\sine, {
 	arg freq=440, amp = 1, gate = 0, pan = 0;
 	var sig, env, vib, noise;
 	env = EnvGen.kr(Env.adsr, gate);
-	vib = LFNoise2.kr(5)*3;
+	vib = LFNoise2.kr(5)*7;
 	sig = SinOsc.ar(freq+vib,amp);
 	sig = sig*amp*env;
 	sig = Pan2.ar(sig, pan);
