@@ -1,24 +1,28 @@
 #include "world.h"
 #include "constants.h"
 #include <cmath>
-#include "fungus.h"
 
 World::World(){}
 
-World::World(int numBalls, int numPartials)
+World::World(int numBalls, int numPartials, ofPixels p_imagesArray[], ofTexture *p_texturePtr)
   : m_numBalls(numBalls),
-    m_numPartials(numPartials)
+    m_numPartials(numPartials),
+    m_imagesPtr{p_imagesArray},
+    m_texturePtr{p_texturePtr}
 {
-  Fungus::initImages();
+
   for (int i = 0; i< m_numBalls; i++){
       Ball tempBall;
-      tempBall = Ball(i,
-                      (int)ofRandom(MINRADIUS,MAXRADIUS),
+
+      tempBall = Ball(i, //id
+                      (int)ofRandom(MINRADIUS,MAXRADIUS), // radius
                       m_numPartials,
-                      (int)ofRandom(BASEROOT, TOPROOT),
+                      (int)ofRandom(BASEROOT, TOPROOT), // root
                       MINROOT,
                       MAXROOT,
-                      ofVec2f(ofRandom(50,ofGetWidth()), ofRandom(50,ofGetHeight()))
+                      ofVec2f(ofRandom(50,ofGetWidth()), ofRandom(50,ofGetHeight())), //position
+                      m_imagesPtr, //images OfPixels Pointer
+                      m_texturePtr // texture ofTexture Pointer
                       );
       tempBall.setVelocity(ofVec2f(ofRandom(-5, 5), ofRandom(-5,5)));
       tempBall.setAcceleration(ofVec2f(0,0));

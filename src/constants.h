@@ -11,7 +11,7 @@
 #define BASEROOT 50
 #define TOPROOT 1000
 #define MINROOT 50
-#define MAXROOT 8000
+#define MAXROOT 1000
 #define IMAGESIZE 250
 
 #endif // CONSTANTS_H

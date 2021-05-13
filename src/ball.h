@@ -3,12 +3,14 @@
 
 #include "ofMain.h"
 #include "constants.h"
+#include <string>
+#include "textures.h"
 
 class Ball
 {
 public:
   Ball();
-  Ball(int id, int radius, int numPartials, int root, float minRoot, float maxRoot, ofVec2f position);
+  Ball(int id, int radius, int numPartials, int root, float minRoot, float maxRoot, ofVec2f position, ofPixels p_imagesPtr[], ofTexture *p_texturePtr);
   void update();
   void setRadius(int radius){ m_radius = radius;};
   void setPosition(ofVec2f position){ m_position = position;};
@@ -44,18 +46,20 @@ private:
   float m_minRoot;
   float m_maxRoot;
   ofVec2f m_position;
+  ofPixels *m_imagesPtr;
+  ofTexture *m_texturePtr;
+
+
   ofVec2f m_velocity;
   ofVec2f m_acceleration;
   float m_mass;
-
 
   ofColor m_color;
   vector<float> m_amps;
   vector<float> m_freqs;
 
+public:
 
-
-//  void normalizeSumAmps();
   float sumAmps();
   void validateBall();
   void calculateMass(); // calculate mass based on radius
@@ -63,9 +67,12 @@ private:
   void initAmpByRadius();
   void loadImages();
 
-public:
   void log(std::string callFunction);
 
 };
+
+
+
+
 
 #endif // BALL_H

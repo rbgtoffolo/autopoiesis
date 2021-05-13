@@ -9,7 +9,7 @@ class World
 {
 public:
   World();
-  World(int numOfBalls, int numPartials);
+  World(int numOfBalls, int numPartials, ofPixels p_imagesArray[], ofTexture *p_texturePtr);
   void update();
   void draw();
   void closeOsc();
@@ -20,6 +20,8 @@ private:
 
   int m_numBalls;
   int m_numPartials;
+  ofPixels *m_imagesPtr;
+  ofTexture *m_texturePtr;
 
   vector<Ball> m_balls;
   void checkCollision();
@@ -32,7 +34,6 @@ private:
   void sendOscAmps(Ball &ball);
   void initAllSynths();
   void updatePan(Ball &ball);
-  void initTextures();
 
 };
 

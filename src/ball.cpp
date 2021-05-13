@@ -3,21 +3,22 @@
 #include <numeric>
 #include "constants.h"
 #include <string>
-#include "fungus.h"
 
 Ball::Ball()
 {
 
 }
 
-Ball::Ball(int id, int radius, int numPartials, int root, float minRoot, float maxRoot, ofVec2f position)
+Ball::Ball(int id, int radius, int numPartials, int root, float minRoot, float maxRoot, ofVec2f position, ofPixels p_imagesPtr[], ofTexture *p_texturePtr)
   : m_id(id),
     m_radius(radius),
     m_numPartials(numPartials),
     m_root(root),
     m_minRoot(minRoot), //necessary to scale color graduation
     m_maxRoot(maxRoot), //necessary to scale color graduation
-    m_position(position)
+    m_position(position),
+    m_imagesPtr{p_imagesPtr},
+    m_texturePtr{p_texturePtr}
 {
 
   validateBall();
@@ -59,10 +60,13 @@ void Ball::update(){
 
 void Ball::draw(){
   ofSetColor(m_color);
+  int imageIndex = std::ceil(ofMap(m_radius, MINRADIUS, MAXRADIUS, 0, 10));
+  float factor = m_radius*2;
+ (*m_texturePtr).loadData(m_imagesPtr[imageIndex]);
   //ofFill();
   // myFont.drawString(myString, position.x, position.y - radius - 2);
   //ofDrawCircle(m_position.x, m_position.y, m_radius);
-  Fungus::draw(m_position.x, m_position.y, m_radius, MINRADIUS, MAXRADIUS);
+  (*m_texturePtr).draw(m_position.x - m_radius, m_position.y - m_radius, factor, factor);
 }
 
 float Ball::sumAmps(){
@@ -149,6 +153,3 @@ void Ball::log(string myString){
   std::clog << " - Vel.x " << m_velocity.x << " Vel.y " << m_velocity.y;
   std::clog << std::endl;
 }
-
-
-

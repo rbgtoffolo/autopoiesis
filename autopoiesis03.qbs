@@ -20,7 +20,8 @@ Project{
             'src/ball.cpp',
             'src/world.h',
             'src/world.cpp',
-            'src/fungus.h'
+            'src/textures.h',
+            'src/textures.cpp'
 
         ]
 

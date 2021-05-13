@@ -6,7 +6,9 @@
 void ofApp::setup(){
   ofSetBackgroundColor(144);
   ofSetCircleResolution(128);
-  myWorld = World(2, 15);
+  myTextures = Textures();
+  myWorld = World(10, 15, myTextures.m_images, &myTextures.m_texture);
+
 
 }
 
@@ -23,7 +25,6 @@ void ofApp::draw(){
 
 void ofApp::exit(){
   myWorld.closeOsc();
-  //delete m_images;
 }
 
 //--------------------------------------------------------------

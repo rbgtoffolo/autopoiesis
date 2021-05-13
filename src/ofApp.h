@@ -3,6 +3,7 @@
 #include "ofMain.h"
 #include "ball.h"
 #include "world.h"
+#include "textures.h"
 
 class ofApp : public ofBaseApp{
 
@@ -25,6 +26,7 @@ public:
   void gotMessage(ofMessage msg);
 
   World myWorld;
+  Textures myTextures;
 
 
 };
