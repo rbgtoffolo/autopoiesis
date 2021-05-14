@@ -12,6 +12,7 @@ public:
   void update();
   void draw();
   void exit();
+  void generateBackground();
 
   void keyPressed(int key);
   void keyReleased(int key);
@@ -27,6 +28,10 @@ public:
 
   World myWorld;
   Textures myTextures;
+  ofPixels backgroundPixels;
+  ofTexture backgroundTexture;
+  float inc, xOff, yOff;
+  int timeCount;
 
 
 };

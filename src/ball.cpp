@@ -66,7 +66,6 @@ void Ball::draw(){
   //ofFill();
   // myFont.drawString(myString, position.x, position.y - radius - 2);
   //ofDrawCircle(m_position.x, m_position.y, m_radius);
-
   ofPushMatrix();
   ofTranslate(m_position - (m_radius/2));
   ofRotateZDeg(ofRandom(-5,5));
@@ -83,7 +82,7 @@ void Ball::setColor(){
   float tempHue = ofMap(m_root, m_minRoot, m_maxRoot, 200, 0);
   float tempSat = ofMap(sumAmps(), 0.001, 0.07, 100, 255);
   //float tempSat = 255;
-  float tempBright = tempSat;
+  float tempBright = 255;
   float tempAlpha = 255;
   m_color = ofColor::fromHsb(tempHue, tempSat, tempBright, tempAlpha);
 }

@@ -2,13 +2,14 @@
 #define TEXTURES_H
 
 #include "ofMain.h"
+#include "constants.h"
 
 class Textures
 {
 public:
   Textures();
 
-  ofPixels m_images[11];
+  ofPixels m_images[TEXTUREFILES];
   ofTexture m_texture;
 
 };

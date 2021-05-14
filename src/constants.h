@@ -13,6 +13,7 @@
 #define MINROOT 50
 #define MAXROOT 1000
 #define IMAGESIZE 250
+#define TEXTUREFILES 11
 
 #endif // CONSTANTS_H
 
