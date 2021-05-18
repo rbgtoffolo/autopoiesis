@@ -10,7 +10,7 @@ void ofApp::setup(){
   backgroundPixels.allocate(ofGetWidth(), ofGetHeight(), OF_IMAGE_GRAYSCALE);
   ofSetCircleResolution(128);
   myTextures = Textures();
-  myWorld = World(70, 15, myTextures.m_images, &myTextures.m_texture);
+  myWorld = World(10, 15, myTextures.m_images, &myTextures.m_texture);
   generateBackground(); // to dynamic background comment this line
 
 
@@ -75,7 +75,7 @@ void ofApp::mouseMoved(int x, int y ){
 
 //--------------------------------------------------------------
 void ofApp::mouseDragged(int x, int y, int button){
-
+   myWorld.checkCollisionWithMouse(ofVec2f(x,y));
 }
 
 //--------------------------------------------------------------

@@ -79,6 +79,17 @@ void World::checkCollision(){
     }
 }
 
+void World::checkCollisionWithMouse(ofVec2f mousePosition){
+
+  for (auto &ball : m_balls){
+      float dist = ball.position().distance(mousePosition);
+      if (dist <= ball.radius()){
+      ofVec2f newVelocity = ball.position() - mousePosition;
+          ball.setVelocity(newVelocity/ball.mass());
+        }
+    }
+}
+
 bool World::collision(Ball &one, Ball &other){
 
   float dist = one.position().distance(other.position());

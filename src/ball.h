@@ -18,6 +18,7 @@ public:
   void setXVelocity(float xVelocity) {m_velocity.x = xVelocity;};
   void setYVelocity(float yVelocity) {m_velocity.y = yVelocity;};
   void setAcceleration(ofVec2f acceleration){m_acceleration = acceleration;};
+  void revertVelocity(){m_velocity *= -1;}
   void applyForce(ofVec2f force);
   ofVec2f position() const {return m_position;};
   float xPosition() const {return m_position.x;};

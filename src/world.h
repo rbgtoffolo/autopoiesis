@@ -13,6 +13,7 @@ public:
   void update();
   void draw();
   void closeOsc();
+  void checkCollisionWithMouse(ofVec2f mousePosition);
 
 
 
@@ -34,6 +35,7 @@ private:
   void sendOscAmps(Ball &ball);
   void initAllSynths();
   void updatePan(Ball &ball);
+
 
 };
 
